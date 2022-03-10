@@ -13,7 +13,6 @@ using namespace std;
     shared_ptr<bst_node> left;
     shared_ptr<bst_node> right;
   };
-
   // Binary search tree:
   //
   // From any subtree node t, the left subtree's data values must be
@@ -47,14 +46,24 @@ public:
   // has no effect.
   void Remove(int data);
 
+  //Gets next larger value: right turn followed by as many left turns as you can make
+  //And returns parent of that successor
+  vector<shared_ptr<bst_node>> Successor(shared_ptr<bst_node> subt);
+
+//Gets vector of parent, self, successor and parent of successor
+  vector<shared_ptr<bst_node>> ParSelfSucc(int value);
+
+  //Gets next smaller value: left turn followed by as many right turns as you can make
+  shared_ptr<bst_node> Predecessor(shared_ptr<bst_node> subt);
+
   // contains returns true if any node in the subtree pointed to by t
   // contains the given data value, false otherwise.
-  bool Contains(shared_ptr<bst_node> subt, int data);
+  bool Contains(shared_ptr<bst_node> subt, int value);
 
   // get_node searches through the subtree pointed to by subt for a node that
   // contains the given data value. If such a node is found, a pointer
   // to it is returned. Otherwise this function returns NULL.
-  shared_ptr<bst_node> GetNode(shared_ptr<bst_node> subt, int data);
+  shared_ptr<bst_node> GetNode(shared_ptr<bst_node> subt, int value);
 
   // size returns the number of nodes in the subtree pointed to by subt. If
   // the tree is empty (t is NULL), it returns zero.
@@ -75,6 +84,10 @@ public:
   // and pass that vector by reference to ToArray function to be filled like:
   // ToVector(somesharedpointer, my_vec)
   void ToVector(shared_ptr<bst_node> subt, vector<int>& vec);
+
+  //Traverses the tree in order from smallest to largest node and prints the node data
+  //I wrote this to practice In-Order traversal
+  void InOrder (shared_ptr<bst_node> subt, int* size);
 
   // This function is implemented for you
   // Returns the root pointer
